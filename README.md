@@ -8,7 +8,7 @@ Tests
 
 You must run docker-compose up for running tests.
 
-## Documentation
+Documentation
 ================
 
 -   Using sagas to maintain data consistency in a microservice architecture by Chris Richardson: https://www.youtube.com/watch?v=YPbGW3Fnmbc
