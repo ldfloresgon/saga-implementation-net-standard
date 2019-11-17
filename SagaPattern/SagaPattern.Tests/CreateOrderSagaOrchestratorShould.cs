@@ -14,14 +14,13 @@ namespace SagaPattern.Tests
     public class CreateOrderSagaOrchestratorShould
     {
         [Test]
-        public async Task Initiaze_a_saga()
+        public void Validate_the_saga()
         {
             Mock<IOrderRepository> orderRepository = new Mock<IOrderRepository>();
 
             var config = new ConfigurationBuilder()
                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
-               // .AddEnvironmentVariables()
                .Build();
 
             MessageBroker.Initialize();
@@ -43,10 +42,10 @@ namespace SagaPattern.Tests
             createOrderSagaOrchestrator.Execute();
 
 
-            ReserveCreditEventHandler reserveCreditCommandHandler = new ReserveCreditEventHandler(new RabbitMQEventBusPublisher(config),
+            ReserveCreditEventHandler reserveCreditEventHandler = new ReserveCreditEventHandler(new RabbitMQEventBusPublisher(config),
                 new RabbitMQEventBusSubscriber(config));
 
-            reserveCreditCommandHandler.Handle();
+            reserveCreditEventHandler.Handle();
 
             Thread.Sleep(2000);
 
