@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbit"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_PASSWORD=1234
+      - RABBITMQ_USERNAME=user
